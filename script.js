@@ -24,3 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 });
+function openProjectModal(id) {
+    document.getElementById(id + "-modal").style.display = "block";
+}
+
+function closeProjectModal(id) {
+    document.getElementById(id + "-modal").style.display = "none";
+}
+
