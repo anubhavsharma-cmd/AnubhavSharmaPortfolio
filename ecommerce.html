@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Sales Analysis - Anubhav Sharma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>E-commerce Sales Analysis</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>Impact of Discounts on Sales, Profitability, and Customer Behavior</h2>
+            <p>
+                This project analyzes an e-commerce store's sales data to determine the most profitable product category, 
+                the impact of discounts on sales and profitability, customer purchase trends, and the influence of social media and shipping preferences on purchasing decisions.
+            </p>
+
+            <h3>Tools Used:</h3>
+            <ul>
+                <li><strong>SQL:</strong> Data extraction, transformation, and analysis.</li>
+                <li><strong>Excel:</strong> Data cleaning and preprocessing.</li>
+                <li><strong>Tableau:</strong> Data visualization and insights presentation.</li>
+            </ul>
+
+            <h3>Dataset Details:</h3>
+            <p><strong>Dataset Name:</strong> ecommerce_consumer</p>
+            <p><strong>Columns:</strong></p>
+            <ul>
+                <li>Customer_ID, Age, Gender, Income_Level, Marital_Status</li>
+                <li>Purchase_Category, Purchase_Amount, Discount_Used (TRUE/FALSE)</li>
+                <li>Frequency_of_Purchase, Brand_Loyalty, Product_Rating</li>
+                <li>Social_Media_Influence, Return_Rate, Customer_Satisfaction</li>
+                <li>Engagement_with_Ads, Device_Used_for_Shopping, Payment_Method</li>
+                <li>Date, Customer_Loyalty_Program_Member, Purchase_Intent</li>
+            </ul>
+
+            <h3>Data Cleaning Steps:</h3>
+            <ul>
+                <li>Removed duplicate entries.</li>
+                <li>Handled missing values using category-wise averages.</li>
+                <li>Converted date format to YYYY-MM-DD.</li>
+                <li>Standardized categorical data for consistency.</li>
+            </ul>
+
+            <h3>SQL Queries for Analysis:</h3>
+
+            <!-- SQL Query 1 -->
+            <div class="sql-box">
+                <p><strong>Finding the Most Profitable Product Category</strong></p>
+                <p>This query calculates the total profit for each product category and identifies the most profitable one.</p>
+                <pre>
+SELECT purchase_category,
+       SUM(purchase_amount - cost_price) AS total_profit
+FROM ecommerce_consumer
+GROUP BY purchase_category
+ORDER BY total_profit DESC
+LIMIT 1;
+                </pre>
+            </div>
+
+            <!-- SQL Query 2 -->
+            <div class="sql-box">
+                <p><strong>Impact of Discounts on Sales</strong></p>
+                <p>This query compares total sales with and without discounts to measure the effectiveness of discount campaigns.</p>
+                <pre>
+SELECT purchase_category,
+       SUM(CASE WHEN discount_used = TRUE THEN purchase_amount ELSE 0 END) AS total_sales_with_discount,
+       SUM(CASE WHEN discount_used = FALSE THEN purchase_amount ELSE 0 END) AS total_sales_without_discount
+FROM ecommerce_consumer
+GROUP BY purchase_category
+ORDER BY total_sales_without_discount DESC;
+                </pre>
+            </div>
+
+            <!-- SQL Query 3 -->
+            <div class="sql-box">
+                <p><strong>Comparing Average Purchase Amount With and Without Discounts</strong></p>
+                <p>This query calculates the average purchase amount for transactions with and without discounts.</p>
+                <pre>
+SELECT discount_used, AVG(purchase_amount) AS avg_purchase_amount, COUNT(*) AS num_transactions
+FROM ecommerce_consumer
+GROUP BY discount_used;
+                </pre>
+            </div>
+
+            <!-- SQL Query 4 -->
+            <div class="sql-box">
+                <p><strong>Customer Segmentation Based on Purchase Behavior</strong></p>
+                <p>This query segments customers based on income level and calculates the average spending per customer group.</p>
+                <pre>
+SELECT income_level, COUNT(DISTINCT customer_id) AS num_customers,
+       AVG(purchase_amount) AS avg_purchase_per_customer
+FROM ecommerce_consumer
+GROUP BY income_level
+ORDER BY avg_purchase_per_customer DESC;
+                </pre>
+            </div>
+
+            <h3>Key Insights & Conclusion:</h3>
+            <ul>
+                <li><strong>Most profitable product category:</strong> Electronics had the highest revenue and net profit.</li>
+                <li><strong>Impact of discounts:</strong> Discounts increased transactions but reduced profit margins.</li>
+                <li><strong>Customer behavior trends:</strong> High-income customers spend more per purchase, while middle-income customers buy more frequently with discounts.</li>
+                <li><strong>Effect of social media:</strong> Customers engaged with ads spend more.</li>
+                <li><strong>Shipping preferences:</strong> Faster shipping results in quicker purchase decisions.</li>
+            </ul>
+
+            <h3>Next Steps:</h3>
+            <ul>
+                <li>Optimize discount strategies for high-value categories.</li>
+                <li>Use machine learning to predict high-value customers.</li>
+                <li>Enhance social media and ad targeting for better ROI.</li>
+                <li>Improve logistics to reduce purchase decision time.</li>
+            </ul>
+
+            <a href="https://github.com/YOUR-GITHUB-USERNAME/ecommerce-sales-analysis" class="btn" target="_blank">View Full Project on GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Anubhav Sharma. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
