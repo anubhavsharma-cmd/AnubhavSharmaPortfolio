@@ -9,38 +9,80 @@
 <body>
     <header>
         <div class="container">
-            <h1>Projects</h1>
+            <h1>My Projects</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="experience.html">Experience</a></li>
+                    <li><a href="projects.html">Projects</a></li>
                     <li><a href="certifications.html">Certifications</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    
+
     <section class="section">
         <div class="container">
             <h2>My Projects</h2>
-            <p>Check out my projects on GitHub: <a href="https://github.com/anubhavsharma-cmd/AnubhavSharmaPortfolio">GitHub Portfolio</a></p>
-            <div class="project-card">
-                <h3>Sales Dashboard</h3>
-                <p>Created an interactive sales dashboard using Tableau.</p>
-            </div>
-            <div class="project-card">
-                <h3>SQL Data Analysis</h3>
-                <p>Performed complex queries to analyze business performance.</p>
+            <div class="projects-grid">
+                
+                <!-- E-commerce Sales Analysis Project Card -->
+                <div class="project-card" onclick="openProjectModal('ecommerce')">
+                    <img src="images/ecommerce-thumbnail.jpg" alt="E-commerce Analysis">
+                    <h3>E-commerce Sales Analysis</h3>
+                </div>
+
+                <!-- Add more project cards here -->
             </div>
         </div>
     </section>
-    
+
+    <!-- Project Modal (Hidden Initially) -->
+    <div id="ecommerce-modal" class="project-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal('ecommerce')">&times;</span>
+            <img src="images/ecommerce-thumbnail.jpg" alt="E-commerce Analysis" class="modal-thumbnail">
+            <h2>E-commerce Sales Analysis</h2>
+            <p><strong>Objective:</strong> Analyzing the impact of discounts on sales & profitability.</p>
+            
+            <h3>Tools Used:</h3>
+            <ul>
+                <li>SQL for data analysis</li>
+                <li>Excel for data cleaning</li>
+                <li>Tableau for visualization</li>
+            </ul>
+
+            <h3>SQL Queries</h3>
+            <img src="images/sql-ecommerce.jpg" alt="SQL Code" class="sql-image">
+
+            <h3>Key Insights</h3>
+            <ul>
+                <li>Electronics category is the most profitable.</li>
+                <li>Discounts increase sales volume but reduce profit margins.</li>
+                <li>Social media & ads drive customer spending.</li>
+            </ul>
+
+            <a href="https://github.com/your-username/ecommerce-sales-analysis" class="btn" target="_blank">View Project</a>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Anubhav Sharma. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function openProjectModal(id) {
+            document.getElementById(id + "-modal").style.display = "block";
+        }
+
+        function closeProjectModal(id) {
+            document.getElementById(id + "-modal").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
