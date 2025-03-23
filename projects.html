@@ -24,14 +24,57 @@
         <div class="container">
             <h2>Projects</h2>
 
+            <!-- Filter Dropdown -->
+            <label for="filter">Filter by Category:</label>
+            <select id="filter" onchange="filterProjects()">
+                <option value="all">All</option>
+                <option value="sql">SQL</option>
+                <option value="excel">Excel</option>
+                <option value="tableau">Tableau</option>
+                <option value="powerbi">Power BI</option>
+            </select>
+
             <div class="projects-grid">
-                <!-- E-commerce Sales Analysis Project Card -->
-                <div class="project-card">
+                <!-- E-commerce Sales Analysis (SQL, Excel, Tableau) -->
+                <div class="project-card sql excel tableau">
                     <a href="ecommerce.html">
                         <img src="images/ecommerce-thumbnail.png" alt="E-commerce Sales Analysis" class="project-thumbnail">
                         <div class="project-content">
                             <h3>E-commerce Sales Analysis</h3>
                             <p class="tools">SQL • Excel • Tableau</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Customer Retention (SQL, Power BI) -->
+                <div class="project-card sql powerbi">
+                    <a href="customer-retention.html">
+                        <img src="images/customer-retention.png" alt="Customer Retention" class="project-thumbnail">
+                        <div class="project-content">
+                            <h3>Customer Retention Analysis</h3>
+                            <p class="tools">SQL • Power BI</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Sales Forecasting (Excel, Tableau) -->
+                <div class="project-card excel tableau">
+                    <a href="sales-forecasting.html">
+                        <img src="images/sales-forecasting.png" alt="Sales Forecasting" class="project-thumbnail">
+                        <div class="project-content">
+                            <h3>Sales Forecasting</h3>
+                            <p class="tools">Excel • Tableau</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Data Cleaning (Excel, SQL) -->
+                <div class="project-card excel sql">
+                    <a href="data-cleaning.html">
+                        <img src="images/data-cleaning.png" alt="Data Cleaning" class="project-thumbnail">
+                        <div class="project-content">
+                            <h3>Data Cleaning Project</h3>
+                            <p class="tools">Excel • SQL</p>
                         </div>
                     </a>
                 </div>
@@ -44,6 +87,26 @@
             <p>&copy; 2025 Anubhav Sharma. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- JavaScript for Filtering Projects -->
+    <script>
+        function filterProjects() {
+            let filter = document.getElementById("filter").value;
+            let projects = document.querySelectorAll(".project-card");
+
+            projects.forEach(project => {
+                if (filter === "all") {
+                    project.style.display = "block";
+                } else {
+                    if (project.classList.contains(filter)) {
+                        project.style.display = "block";
+                    } else {
+                        project.style.display = "none";
+                    }
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
