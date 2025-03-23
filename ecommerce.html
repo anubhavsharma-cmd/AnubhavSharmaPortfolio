@@ -26,36 +26,46 @@
 
             <h2>Impact of Discounts on Sales, Profitability, and Customer Behavior</h2>
             <p>
-                This project analyzes an e-commerce store's sales data to determine the most profitable product category, 
-                the impact of discounts on sales and profitability, customer purchase trends, and the influence of social media and shipping preferences on purchasing decisions.
+                This project aims to analyze sales data from an e-commerce store to understand the impact of discounts on sales and profitability, identify the most profitable product categories, and explore customer purchase behavior.
+            </p>
+            <p>
+                The dataset contains customer demographics, purchase details, discount usage, engagement with ads, shipping preferences, and more. By leveraging SQL, Excel, and Tableau, we extract insights that help optimize pricing strategies, marketing efforts, and customer retention approaches.
             </p>
 
             <h3>🔹 Tools Used</h3>
             <ul>
-                <li><strong>SQL:</strong> Data extraction, transformation, and analysis.</li>
-                <li><strong>Excel:</strong> Data cleaning and preprocessing.</li>
-                <li><strong>Tableau:</strong> Data visualization and insights presentation.</li>
+                <li><strong>SQL:</strong> Extracting and analyzing e-commerce sales data.</li>
+                <li><strong>Excel:</strong> Data cleaning, handling missing values, and preprocessing.</li>
+                <li><strong>Tableau:</strong> Visualization of key findings and trends.</li>
             </ul>
 
-            <h3>📌 Dataset Details</h3>
+            <h3>📌 Dataset Overview</h3>
+            <p>The dataset includes multiple aspects of customer transactions:</p>
             <ul>
-                <li><strong>Dataset Name:</strong> ecommerce_consumer</li>
-                <li><strong>Key Columns:</strong> Customer_ID, Age, Income_Level, Purchase_Category, Discount_Used, etc.</li>
+                <li><strong>Customer Details:</strong> Age, Gender, Income Level, Marital Status.</li>
+                <li><strong>Purchase Information:</strong> Product Category, Purchase Amount, Discount Used.</li>
+                <li><strong>Customer Engagement:</strong> Time Spent on Research, Social Media Influence, Ad Engagement.</li>
+                <li><strong>Shipping & Payment:</strong> Preferred Shipping Method, Payment Type, Return Rate.</li>
             </ul>
 
-            <h3>🛠 Data Cleaning Steps</h3>
+            <h3>🛠 Data Cleaning & Preparation</h3>
+            <p>To ensure accurate analysis, we performed the following steps:</p>
             <ul>
-                <li>Removed duplicate entries.</li>
-                <li>Handled missing values using category-wise averages.</li>
-                <li>Converted date format to YYYY-MM-DD.</li>
-                <li>Standardized categorical data for consistency.</li>
+                <li>Removed duplicate customer records and invalid transactions.</li>
+                <li>Handled missing values using median imputation for numerical columns.</li>
+                <li>Converted all date values to a standard YYYY-MM-DD format.</li>
+                <li>Normalized categorical variables such as "High", "Medium", "Low" for income levels.</li>
             </ul>
 
             <h3>🔎 SQL Queries for Analysis</h3>
 
             <div class="sql-box">
                 <p><strong>📊 Finding the Most Profitable Product Category</strong></p>
-                <p>This query calculates total profit for each product category and identifies the highest earning one.</p>
+                <p>
+                    This query calculates total profit for each product category by subtracting cost price from purchase amounts.
+                    We then sort the results in descending order to identify the most profitable category.
+                    Businesses can use this insight to focus marketing efforts on high-profit products.
+                </p>
                 <pre>
 SELECT purchase_category,
        SUM(purchase_amount - cost_price) AS total_profit
@@ -68,7 +78,11 @@ LIMIT 1;
 
             <div class="sql-box">
                 <p><strong>📉 Impact of Discounts on Sales</strong></p>
-                <p>This query compares total sales with and without discounts to measure their effectiveness.</p>
+                <p>
+                    This query compares total sales for products with and without discounts.
+                    By segmenting sales based on discount usage, we can assess whether discounts drive higher revenue.
+                    This helps in making data-driven decisions on pricing strategies.
+                </p>
                 <pre>
 SELECT purchase_category,
        SUM(CASE WHEN discount_used = TRUE THEN purchase_amount ELSE 0 END) AS total_sales_with_discount,
@@ -81,11 +95,19 @@ ORDER BY total_sales_without_discount DESC;
 
             <h3>📊 Key Insights & Conclusion</h3>
             <ul>
-                <li><strong>Most profitable category:</strong> Electronics had the highest revenue and net profit.</li>
-                <li><strong>Discounts impact:</strong> While discounts increase sales volume, they reduce profit margins.</li>
-                <li><strong>Customer behavior:</strong> High-income customers spend more, while middle-income customers buy more frequently when discounts are available.</li>
-                <li><strong>Social media influence:</strong> Customers engaged with ads spend more.</li>
-                <li><strong>Shipping preferences:</strong> Faster shipping results in quicker purchase decisions.</li>
+                <li><strong>Most profitable category:</strong> The Electronics category generated the highest revenue and profit margins.</li>
+                <li><strong>Discounts impact:</strong> While discounts increased the number of transactions, they reduced overall profit margins.</li>
+                <li><strong>Customer behavior:</strong> High-income customers make larger purchases, whereas middle-income customers buy more frequently with discounts.</li>
+                <li><strong>Marketing strategies:</strong> Customers influenced by social media and ad campaigns tend to have higher engagement rates and spending levels.</li>
+                <li><strong>Shipping preferences:</strong> Customers who choose faster shipping options make quicker purchasing decisions.</li>
+            </ul>
+
+            <h3>📢 Next Steps</h3>
+            <ul>
+                <li>Refine discounting strategies to maximize profits while maintaining customer engagement.</li>
+                <li>Use machine learning models to predict high-value customers and personalize offers.</li>
+                <li>Improve social media targeting to increase engagement and spending.</li>
+                <li>Optimize logistics and shipping strategies to reduce cart abandonment rates.</li>
             </ul>
 
             <a href="https://github.com/YOUR-GITHUB-USERNAME/ecommerce-sales-analysis" class="btn" target="_blank">🔗 View Full Project on GitHub</a>
