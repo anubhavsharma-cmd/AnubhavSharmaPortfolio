@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Sales Analysis - Anubhav Sharma</title>
+    <title>E-commerce Sales Analysis</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,97 +20,89 @@
         </div>
     </header>
 
-    <section class="project-section">
+    <section class="project-intro">
         <div class="container">
-            <img src="images/ecommerce-thumbnail.png" alt="E-commerce Analysis" class="project-thumbnail">
+            <h2>Introduction</h2>
+            <p>This project analyzes how discounts impact sales, profitability, and customer behavior in an e-commerce store. It also examines factors like social media engagement, ad interactions, and shipping preferences to uncover trends.</p>
+        </div>
+    </section>
 
-            <h2>Impact of Discounts on Sales, Profitability, and Customer Behavior</h2>
-            <p>
-                This project aims to analyze sales data from an e-commerce store to understand the impact of discounts on sales and profitability, identify the most profitable product categories, and explore customer purchase behavior.
-            </p>
-            <p>
-                The dataset contains customer demographics, purchase details, discount usage, engagement with ads, shipping preferences, and more. By leveraging SQL, Excel, and Tableau, we extract insights that help optimize pricing strategies, marketing efforts, and customer retention approaches.
-            </p>
-
-            <h3>🔹 Tools Used</h3>
+    <section class="project-objective">
+        <div class="container">
+            <h2>Objective</h2>
             <ul>
-                <li><strong>SQL:</strong> Extracting and analyzing e-commerce sales data.</li>
-                <li><strong>Excel:</strong> Data cleaning, handling missing values, and preprocessing.</li>
-                <li><strong>Tableau:</strong> Visualization of key findings and trends.</li>
+                <li>Identify the most profitable product category.</li>
+                <li>Analyze the impact of discounts on sales and profitability.</li>
+                <li>Examine customer purchase trends and behavior.</li>
+                <li>Evaluate the influence of social media and advertisements.</li>
             </ul>
+        </div>
+    </section>
 
-            <h3>📌 Dataset Overview</h3>
-            <p>The dataset includes multiple aspects of customer transactions:</p>
+    <section class="project-methodology">
+        <div class="container">
+            <h2>Methodology</h2>
             <ul>
-                <li><strong>Customer Details:</strong> Age, Gender, Income Level, Marital Status.</li>
-                <li><strong>Purchase Information:</strong> Product Category, Purchase Amount, Discount Used.</li>
-                <li><strong>Customer Engagement:</strong> Time Spent on Research, Social Media Influence, Ad Engagement.</li>
-                <li><strong>Shipping & Payment:</strong> Preferred Shipping Method, Payment Type, Return Rate.</li>
+                <li><strong>Data Collection:</strong> Customer transactions dataset from an e-commerce store.</li>
+                <li><strong>Data Cleaning:</strong> Handling duplicates, missing values, and standardizing formats using SQL & Excel.</li>
+                <li><strong>Data Analysis:</strong> SQL queries for insights, Tableau for visualization.</li>
             </ul>
+        </div>
+    </section>
 
-            <h3>🛠 Data Cleaning & Preparation</h3>
-            <p>To ensure accurate analysis, we performed the following steps:</p>
-            <ul>
-                <li>Removed duplicate customer records and invalid transactions.</li>
-                <li>Handled missing values using median imputation for numerical columns.</li>
-                <li>Converted all date values to a standard YYYY-MM-DD format.</li>
-                <li>Normalized categorical variables such as "High", "Medium", "Low" for income levels.</li>
-            </ul>
-
-            <h3>🔎 SQL Queries for Analysis</h3>
+    <section class="project-sql">
+        <div class="container">
+            <h2>SQL Analysis</h2>
 
             <div class="sql-box">
-                <p><strong>📊 Finding the Most Profitable Product Category</strong></p>
-                <p>
-                    This query calculates total profit for each product category by subtracting cost price from purchase amounts.
-                    We then sort the results in descending order to identify the most profitable category.
-                    Businesses can use this insight to focus marketing efforts on high-profit products.
-                </p>
-                <pre>
-SELECT purchase_category,
+                <p><strong>Finding the Most Profitable Product Category</strong></p>
+                <p>This query calculates total profit by subtracting cost price from purchase amounts, sorting the results to identify the most profitable category.</p>
+                <pre><code class="sql">
+SELECT purchase_category, 
        SUM(purchase_amount - cost_price) AS total_profit
 FROM ecommerce_consumer
 GROUP BY purchase_category
 ORDER BY total_profit DESC
 LIMIT 1;
-                </pre>
+                </code></pre>
             </div>
 
             <div class="sql-box">
-                <p><strong>📉 Impact of Discounts on Sales</strong></p>
-                <p>
-                    This query compares total sales for products with and without discounts.
-                    By segmenting sales based on discount usage, we can assess whether discounts drive higher revenue.
-                    This helps in making data-driven decisions on pricing strategies.
-                </p>
-                <pre>
-SELECT purchase_category,
-       SUM(CASE WHEN discount_used = TRUE THEN purchase_amount ELSE 0 END) AS total_sales_with_discount,
-       SUM(CASE WHEN discount_used = FALSE THEN purchase_amount ELSE 0 END) AS total_sales_without_discount
+                <p><strong>Impact of Discounts on Sales</strong></p>
+                <p>Analyzing total sales with and without discounts to assess whether discounts drive higher revenue.</p>
+                <pre><code class="sql">
+SELECT purchase_category, 
+       SUM(CASE WHEN discount_used = TRUE THEN purchase_amount ELSE 0 END) AS sales_with_discount,
+       SUM(CASE WHEN discount_used = FALSE THEN purchase_amount ELSE 0 END) AS sales_without_discount
 FROM ecommerce_consumer
 GROUP BY purchase_category
-ORDER BY total_sales_without_discount DESC;
-                </pre>
+ORDER BY sales_without_discount DESC;
+                </code></pre>
             </div>
+        </div>
+    </section>
 
-            <h3>📊 Key Insights & Conclusion</h3>
+    <section class="project-results">
+        <div class="container">
+            <h2>Results</h2>
             <ul>
-                <li><strong>Most profitable category:</strong> The Electronics category generated the highest revenue and profit margins.</li>
-                <li><strong>Discounts impact:</strong> While discounts increased the number of transactions, they reduced overall profit margins.</li>
-                <li><strong>Customer behavior:</strong> High-income customers make larger purchases, whereas middle-income customers buy more frequently with discounts.</li>
-                <li><strong>Marketing strategies:</strong> Customers influenced by social media and ad campaigns tend to have higher engagement rates and spending levels.</li>
-                <li><strong>Shipping preferences:</strong> Customers who choose faster shipping options make quicker purchasing decisions.</li>
+                <li>Electronics is the most profitable category.</li>
+                <li>Discounts increase sales but lower profit margins.</li>
+                <li>High-income customers spend more per purchase.</li>
+                <li>Social media engagement significantly impacts purchasing behavior.</li>
             </ul>
+        </div>
+    </section>
 
-            <h3>📢 Next Steps</h3>
-            <ul>
-                <li>Refine discounting strategies to maximize profits while maintaining customer engagement.</li>
-                <li>Use machine learning models to predict high-value customers and personalize offers.</li>
-                <li>Improve social media targeting to increase engagement and spending.</li>
-                <li>Optimize logistics and shipping strategies to reduce cart abandonment rates.</li>
-            </ul>
+    <section class="project-summary">
+        <div class="container">
+            <h2>Summary</h2>
+            <p>This project provides insights into e-commerce sales, profit trends, and discount strategies. The results help optimize marketing and sales strategies for higher profitability.</p>
 
-            <a href="https://github.com/YOUR-GITHUB-USERNAME/ecommerce-sales-analysis" class="btn" target="_blank">🔗 View Full Project on GitHub</a>
+            <div class="buttons">
+                <a href="https://github.com/anubhavsharma-cmd/Ecommerce-Analysis" class="btn">Go to GitHub</a>
+                <a href="https://public.tableau.com/views/EcommerceDashboard" class="btn">Go to Dashboard</a>
+            </div>
         </div>
     </section>
 
