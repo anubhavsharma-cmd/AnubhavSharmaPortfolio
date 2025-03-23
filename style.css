@@ -6,127 +6,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Body */
-body {
-    background-color: #ffffff;
-    color: #222222;
-    line-height: 1.6;
-}
-
-/* Sticky Header with Scroll Effect */
+/* HEADER: Remove Sticky Effect */
 header {
-    position: fixed;
+    position: relative;
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 20px 0;
     background: linear-gradient(to right, #6a11cb, #2575fc);
-    transition: all 0.4s ease-in-out;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-header.scrolled {
-    background: #ffffff;
+    padding: 20px 0;
+    text-align: center;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-header h1 {
-    font-size: 28px;
-    color: #ffffff;
-    text-transform: uppercase;
-    transition: color 0.4s ease-in-out;
-}
-
-header.scrolled h1 {
-    color: #333333;
-}
-
-/* Navigation Bar */
-nav ul {
-    list-style: none;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
-
-/* Home Tab in Yellow */
-nav ul li:first-child a {
-    background-color: #ffcc00;
-    color: #222222;
-    font-weight: bold;
-}
-
-nav ul li:first-child a:hover {
-    background-color: #ffd633;
-    color: #000000;
-}
-
-/* Other Links */
-nav ul li a:not(:first-child) {
-    color: #ffffff;
-}
-
-nav ul li a:not(:first-child):hover {
-    color: #ffcc00;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.hero h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-/* Project Sections */
-section {
-    padding: 30px 4cm;
-    text-align: left;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Headings */
-h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333333;
-}
-
-/* Paragraphs & Lists */
-p, ul {
-    font-size: 18px;
-    color: #444444;
-    text-align: justify;
-    text-indent: 3cm;
-    margin-bottom: 15px;
-}
-
-/* SQL Query Box */
+/* SQL Code Box */
 .sql-box {
     background-color: #1e1e1e;
     color: #ffffff;
@@ -150,10 +40,6 @@ p, ul {
 }
 
 /* Buttons */
-.buttons {
-    margin-top: 20px;
-}
-
 .btn {
     display: inline-block;
     padding: 12px 18px;
@@ -168,23 +54,4 @@ p, ul {
 
 .btn:hover {
     background: #0056b3;
-}
-
-/* Footer */
-footer {
-    background: #f8f9fa;
-    padding: 15px 0;
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav ul {
-        text-align: center;
-    }
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
 }
