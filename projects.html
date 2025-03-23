@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Anubhav Sharma</title>
+    <title>E-commerce Sales Analysis</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="container">
-            <h1>My Projects</h1>
+            <h1>E-commerce Sales Analysis</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -20,64 +20,88 @@
         </div>
     </header>
 
-    <section class="projects-section">
+    <section class="project-intro">
         <div class="container">
-            <h2>Projects</h2>
+            <h2>Introduction</h2>
+            <p>This project analyzes the impact of discounts on sales, profitability, and customer behavior in an e-commerce store. The study examines how different factors like social media engagement, ad interactions, and shipping preferences influence purchasing decisions.</p>
+        </div>
+    </section>
 
-            <!-- Filter Dropdown -->
-            <label for="filter">Filter by Category:</label>
-            <select id="filter" onchange="filterProjects()">
-                <option value="all">All</option>
-                <option value="sql">SQL</option>
-                <option value="excel">Excel</option>
-                <option value="tableau">Tableau</option>
-                <option value="powerbi">Power BI</option>
-            </select>
+    <section class="project-objective">
+        <div class="container">
+            <h2>Objective</h2>
+            <ul>
+                <li>Identify the most profitable product category.</li>
+                <li>Analyze the impact of discounts on sales and profitability.</li>
+                <li>Examine customer purchase trends and behavior.</li>
+                <li>Evaluate the influence of social media and advertisements on purchasing decisions.</li>
+            </ul>
+        </div>
+    </section>
 
-            <div class="projects-grid">
-                <!-- E-commerce Sales Analysis (SQL, Excel, Tableau) -->
-                <div class="project-card sql excel tableau">
-                    <a href="ecommerce.html">
-                        <img src="images/ecommerce-thumbnail.png" alt="E-commerce Sales Analysis" class="project-thumbnail">
-                        <div class="project-content">
-                            <h3>E-commerce Sales Analysis</h3>
-                            <p class="tools">SQL • Excel • Tableau</p>
-                        </div>
-                    </a>
-                </div>
+    <section class="project-methodology">
+        <div class="container">
+            <h2>Methodology</h2>
+            <ul>
+                <li><strong>Data Collection:</strong> The dataset contains customer transactions and behavioral insights.</li>
+                <li><strong>Data Cleaning:</strong> Removing duplicates, handling missing values, and standardizing formats using SQL & Excel.</li>
+                <li><strong>Data Analysis:</strong> Using SQL queries to identify trends and Tableau for visualization.</li>
+            </ul>
+        </div>
+    </section>
 
-                <!-- Customer Retention (SQL, Power BI) -->
-                <div class="project-card sql powerbi">
-                    <a href="customer-retention.html">
-                        <img src="images/customer-retention.png" alt="Customer Retention" class="project-thumbnail">
-                        <div class="project-content">
-                            <h3>Customer Retention Analysis</h3>
-                            <p class="tools">SQL • Power BI</p>
-                        </div>
-                    </a>
-                </div>
+    <section class="project-sql">
+        <div class="container">
+            <h2>SQL Analysis</h2>
 
-                <!-- Sales Forecasting (Excel, Tableau) -->
-                <div class="project-card excel tableau">
-                    <a href="sales-forecasting.html">
-                        <img src="images/sales-forecasting.png" alt="Sales Forecasting" class="project-thumbnail">
-                        <div class="project-content">
-                            <h3>Sales Forecasting</h3>
-                            <p class="tools">Excel • Tableau</p>
-                        </div>
-                    </a>
-                </div>
+            <div class="sql-box">
+                <p><strong>Finding the Most Profitable Product Category</strong></p>
+                <p>This query calculates total profit by subtracting cost price from purchase amounts, sorting the results to identify the most profitable category.</p>
+                <pre><code class="sql">
+SELECT purchase_category, 
+       SUM(purchase_amount - cost_price) AS total_profit
+FROM ecommerce_consumer
+GROUP BY purchase_category
+ORDER BY total_profit DESC
+LIMIT 1;
+                </code></pre>
+            </div>
 
-                <!-- Data Cleaning (Excel, SQL) -->
-                <div class="project-card excel sql">
-                    <a href="data-cleaning.html">
-                        <img src="images/data-cleaning.png" alt="Data Cleaning" class="project-thumbnail">
-                        <div class="project-content">
-                            <h3>Data Cleaning Project</h3>
-                            <p class="tools">Excel • SQL</p>
-                        </div>
-                    </a>
-                </div>
+            <div class="sql-box">
+                <p><strong>Impact of Discounts on Sales</strong></p>
+                <p>Analyzing total sales with and without discounts to assess whether discounts drive higher revenue.</p>
+                <pre><code class="sql">
+SELECT purchase_category, 
+       SUM(CASE WHEN discount_used = TRUE THEN purchase_amount ELSE 0 END) AS sales_with_discount,
+       SUM(CASE WHEN discount_used = FALSE THEN purchase_amount ELSE 0 END) AS sales_without_discount
+FROM ecommerce_consumer
+GROUP BY purchase_category
+ORDER BY sales_without_discount DESC;
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-results">
+        <div class="container">
+            <h2>Results</h2>
+            <ul>
+                <li>Electronics is the most profitable category.</li>
+                <li>Discounts increase sales but lower profit margins.</li>
+                <li>High-income customers spend more per purchase.</li>
+                <li>Social media engagement significantly impacts purchasing behavior.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="project-summary">
+        <div class="container">
+            <h2>Summary</h2>
+            <p>This project provides insights into e-commerce sales, profit trends, and discount strategies. The results help optimize marketing and sales strategies for higher profitability.</p>
+
+            <div class="buttons">
+                <a href="https://github.com/anubhavsharma-cmd/Ecommerce-Analysis" class="btn">Go to GitHub</a>
+                <a href="https://public.tableau.com/views/EcommerceDashboard" class="btn">Go to Dashboard</a>
             </div>
         </div>
     </section>
@@ -87,26 +111,6 @@
             <p>&copy; 2025 Anubhav Sharma. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- JavaScript for Filtering Projects -->
-    <script>
-        function filterProjects() {
-            let filter = document.getElementById("filter").value;
-            let projects = document.querySelectorAll(".project-card");
-
-            projects.forEach(project => {
-                if (filter === "all") {
-                    project.style.display = "block";
-                } else {
-                    if (project.classList.contains(filter)) {
-                        project.style.display = "block";
-                    } else {
-                        project.style.display = "none";
-                    }
-                }
-            });
-        }
-    </script>
 
 </body>
 </html>
