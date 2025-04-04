@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects - Anubhav Sharma</title>
+    <title>Projects - Anubhav Sharma</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-
     <header>
         <div class="container">
             <h1>My Projects</h1>
@@ -20,38 +20,50 @@
         </div>
     </header>
 
-    <section class="projects-container">
-        <a href="https://github.com/anubhavsharma-cmd/Ecommerce-Analysis" class="project-card" target="_blank">
-            <h2>E-commerce Sales Analysis</h2>
-            <p>Impact of discounts on sales, profitability, and customer behavior.</p>
-        </a>
-
-        <a href="https://public.tableau.com/views/EcommerceDashboard" class="project-card" target="_blank">
-            <h2>Tableau Dashboard</h2>
-            <p>Interactive visualization of e-commerce trends and insights.</p>
-        </a>
-
-        <a href="https://yourwebsite.com/methodology" class="project-card" target="_blank">
-            <h2>Methodology</h2>
-            <p>Data collection, cleaning, and SQL-based analysis approach.</p>
-        </a>
-
-        <a href="https://yourwebsite.com/sql-analysis" class="project-card" target="_blank">
-            <h2>SQL Analysis</h2>
-            <p>Queries used for finding profitable categories and discount effects.</p>
-        </a>
-
-        <a href="https://yourwebsite.com/results" class="project-card" target="_blank">
-            <h2>Results</h2>
-            <p>Key findings from the analysis, including sales trends.</p>
-        </a>
+    <section class="projects">
+        <div class="container">
+            <div class="project-filters">
+                <button class="filter-btn" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="sql">SQL</button>
+                <button class="filter-btn" data-filter="excel">Excel</button>
+                <button class="filter-btn" data-filter="tableau">Tableau</button>
+                <button class="filter-btn" data-filter="powerbi">Power BI</button>
+            </div>
+            <div class="project-card" data-category="sql excel tableau">
+                <img src="ecommerce-thumbnail.jpg" alt="E-commerce Sales Analysis Thumbnail" class="project-thumbnail">
+                <h3>E-commerce Sales Analysis</h3>
+                <p>Analyzing e-commerce sales, discount impacts, and customer behavior using SQL, Excel, and Tableau.</p>
+                <a href="ecommerce-analysis.html" class="btn">View Project</a>
+            </div>
+        </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const projectCards = document.querySelectorAll(".project-card");
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const filter = this.getAttribute("data-filter");
+                    
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute("data-category").split(" ");
+                        if (filter === "all" || categories.includes(filter)) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
     <footer>
         <div class="container">
             <p>&copy; 2025 Anubhav Sharma. All rights reserved.</p>
         </div>
     </footer>
-
 </body>
 </html>
