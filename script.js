@@ -1,34 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const modalBtns = document.querySelectorAll(".open-modal");
-    const modals = document.querySelectorAll(".modal");
-    const closeBtns = document.querySelectorAll(".close-modal");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".card");
 
-    modalBtns.forEach((btn) => {
-        btn.addEventListener("click", function () {
-            const modalId = btn.getAttribute("data-modal");
-            document.getElementById(modalId).style.display = "block";
-        });
-    });
-
-    closeBtns.forEach((btn) => {
-        btn.addEventListener("click", function () {
-            btn.parentElement.parentElement.style.display = "none";
-        });
-    });
-
-    window.onclick = function (event) {
-        modals.forEach((modal) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            if (this.dataset.keyword === "all") {
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+                cards.forEach(card => card.style.display = "block");
+                return;
             }
+
+            this.classList.toggle("active");
+
+            const activeFilters = Array.from(filterButtons)
+                .filter(btn => btn.classList.contains("active"))
+                .map(btn => btn.dataset.keyword);
+
+            cards.forEach(card => {
+                const keywords = card.dataset.keywords.split(" ");
+                card.style.display = activeFilters.some(filter => keywords.includes(filter)) ? "block" : "none";
+            });
         });
-    };
+    });
 });
-function openProjectModal(id) {
-    document.getElementById(id + "-modal").style.display = "block";
-}
-
-function closeProjectModal(id) {
-    document.getElementById(id + "-modal").style.display = "none";
-}
-
